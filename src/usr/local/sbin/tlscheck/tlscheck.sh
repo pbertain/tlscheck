@@ -206,11 +206,7 @@ echo "          <th>Host IP</th>" >> ${TEMPFILE}
 echo "      </tr>" >> ${TEMPFILE}
 
 for HOST in ${CDNHOSTS} ; do
-    if [ "${HOST}" = "march-madness.bertain.net" ]; then
-        WWWHOST="march-madness.bertain.net"
-    else
-        WWWHOST="www.${HOST}"
-    fi
+    WWWHOST="www.${HOST}"
     EXPIREDATE=""
     PROVIDER=""
     HOST_IP=""
