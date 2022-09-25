@@ -19,7 +19,7 @@ TEMPFILE="${PRODFILE}.temp"
 cat /dev/null > ${TEMPFILE}
 
 # Raw Lists
-CDNHOSTS="airpuff.info amateur-ham-rad.io berta.in bertain.net brtn.cloud burl.link hampuff.com haydad.group jtfm.news km6ajq.net lipaamdesogeskhali.us n538cd.aero reflectionsofcommunity.org sector-2814.net thechailife.store unix-chix.org march-madness.bertain.net"
+CDNHOSTS="airpuff.info amateur-ham-rad.io berta.in bertain.net brtn.cloud burl.link hampuff.com haydad.group jtfm.news km6ajq.net lipaamdesogeskhali.us march-madness.bertain.net n538cd.aero reflectionsofcommunity.org sector-2814.net thechailife.store unix-chix.org"
 DNSADMIN="dnsadmin01.brtn.cloud dnsadmin02.brtn.cloud"
 #HAPROXYVIP="haproxy.bertain.net"
 #NETSCALERVIP="pbb07.infra.brtn.cloud"
@@ -107,35 +107,6 @@ for HOST in ${DNSADMIN} ; do
 done
 
 ########################
-##   Netscaler VIP    ##
-########################
-
-echo "      <tr class=\"th\">" >> ${TEMPFILE}
-echo "           <th>Netscaler VIP</th>" >> ${TEMPFILE}
-echo "           <th>Expiration Date</th>" >> ${TEMPFILE}
-echo "           <th>Provider</th>" >> ${TEMPFILE}
-echo "           <th>Host IP</th>" >> ${TEMPFILE}
-echo "      </tr>" >> ${TEMPFILE}
-
-for HOST in ${NETSCALERVIP} ; do
-    EXPIREDATE=""
-    PROVIDER=""
-    HOST_IP=""
-    EXPIREDATE=`echo | openssl s_client -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates | grep After | awk -F= '{ print $2 }' | awk '{ print $1 "-" $2 "-" $4 "-" $3 }'`
-    PROVIDER=`echo | openssl s_client -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates -issuer | awk -F= '{ print $4 }' | awk -F, '{ print $1 }' | sed -e's/^ //g'`
-    HOST_IP=`dig +short ${HOST}`
-    echo "                      <tr class=\"td\">" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${HOST}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${EXPIREDATE}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${PROVIDER}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td_ctr\">${HOST_IP}</td>" >> ${TEMPFILE}
-    echo "                      </tr>" >> ${TEMPFILE}
-    EXPIREDATE=""
-    PROVIDER=""
-    HOST_IP=""
-done
-
-########################
 ##      Nird Club     ##
 ########################
 
@@ -152,64 +123,6 @@ for HOST in ${NIRDCLUB} ; do
     HOST_IP=""
     EXPIREDATE=`echo | openssl s_client -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates | grep After | awk -F= '{ print $2 }' | awk '{ print $1 "-" $2 "-" $4 "-" $3 }'`
     PROVIDER=`echo | openssl s_client -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates -issuer | awk -F= '{ print $4 }' | awk -F, '{ print $1 }' | sed -e's/^ //g' | tr '\n' ' '`
-    HOST_IP=`dig +short ${HOST}`
-    echo "                      <tr class=\"td\">" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${HOST}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${EXPIREDATE}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${PROVIDER}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td_ctr\">${HOST_IP}</td>" >> ${TEMPFILE}
-    echo "                      </tr>" >> ${TEMPFILE}
-    EXPIREDATE=""
-    PROVIDER=""
-    HOST_IP=""
-done
-
-########################
-##   HAProxy VIP    ##
-########################
-
-echo "      <tr class=\"th\">" >> ${TEMPFILE}
-echo "           <th>HAProxy VIP</th>" >> ${TEMPFILE}
-echo "           <th>Expiration Date</th>" >> ${TEMPFILE}
-echo "           <th>Provider</th>" >> ${TEMPFILE} 
-echo "           <th>Host IP</th>" >> ${TEMPFILE} 
-echo "      </tr>" >> ${TEMPFILE}
-
-for HOST in ${HAPROXYVIP} ; do
-    EXPIREDATE=""
-    PROVIDER=""
-    HOST_IP=""
-    EXPIREDATE=`echo | openssl s_client -6 -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates | grep After | awk -F= '{ print $2 }' | awk '{ print $1 "-" $2 "-" $4 "-" $3 }'`
-    PROVIDER=`echo | openssl s_client -6 -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates -issuer | awk -F= '{ print $4 }' | awk -F, '{ print $1 }' | sed -e's/^ //g'`
-    HOST_IP=`dig +short ${HOST}`
-    echo "                      <tr class=\"td\">" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${HOST}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${EXPIREDATE}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td\">${PROVIDER}</td>" >> ${TEMPFILE}
-    echo "                          <td class=\"td_ctr\">${HOST_IP}</td>" >> ${TEMPFILE}
-    echo "                      </tr>" >> ${TEMPFILE}
-    EXPIREDATE=""
-    PROVIDER=""
-    HOST_IP=""
-done
-
-########################
-##   NGINX VIP    ##
-########################
-
-echo "      <tr class=\"th\">" >> ${TEMPFILE}
-echo "           <th>NGINX VIP</th>" >> ${TEMPFILE}
-echo "           <th>Expiration Date</th>" >> ${TEMPFILE}
-echo "           <th>Provider</th>" >> ${TEMPFILE} 
-echo "           <th>Host IP</th>" >> ${TEMPFILE} 
-echo "      </tr>" >> ${TEMPFILE}
-
-for HOST in ${NGINXVIP} ; do
-    EXPIREDATE=""
-    PROVIDER=""
-    HOST_IP=""
-    EXPIREDATE=`echo | openssl s_client -6 -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates | grep After | awk -F= '{ print $2 }' | awk '{ print $1 "-" $2 "-" $4 "-" $3 }'`
-    PROVIDER=`echo | openssl s_client -6 -servername ${HOST} -connect ${HOST}:443 2>/dev/null | openssl x509 -noout -dates -issuer | awk -F= '{ print $4 }' | awk -F, '{ print $1 }' | sed -e's/^ //g'`
     HOST_IP=`dig +short ${HOST}`
     echo "                      <tr class=\"td\">" >> ${TEMPFILE}
     echo "                          <td class=\"td\">${HOST}</td>" >> ${TEMPFILE}
@@ -293,7 +206,11 @@ echo "          <th>Host IP</th>" >> ${TEMPFILE}
 echo "      </tr>" >> ${TEMPFILE}
 
 for HOST in ${CDNHOSTS} ; do
-    WWWHOST="www.${HOST}"
+    if [ "${HOST}" = "march-madness.bertain.net" ]; then
+        WWWHOST="march-madness.bertain.net"
+    else
+        WWWHOST="www.${HOST}"
+    fi
     EXPIREDATE=""
     PROVIDER=""
     HOST_IP=""
