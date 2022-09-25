@@ -42,10 +42,10 @@ echo "" >> ${TEMPFILE}
 echo "	<body bgcolor=\"#333333\" link=\"#FFA500\" alink=\"#FFA500\" vlink=\"#FFA500\">" >> ${TEMPFILE}
 echo "		<table class=\"table\">" >> ${TEMPFILE}
 echo "			<tr>" >> ${TEMPFILE}
-echo "				<td class=\"td_titles\" colspan=\"3\" vertical-align=\"center\"><a href=\"https://brtn.cloud/\"><img width=\"100\" height=\"100\" src=\"/img/tls-meme-1.jpg\"></a></td>" >> ${TEMPFILE}
+echo "				<td class=\"td_titles\" colspan=\"4\" vertical-align=\"center\"><a href=\"https://brtn.cloud/\"><img width=\"100\" height=\"100\" src=\"/img/tls-meme-1.jpg\"></a></td>" >> ${TEMPFILE}
 echo "			</tr>" >> ${TEMPFILE}
 echo "			<tr>" >> ${TEMPFILE}
-echo "              <td class=\"td_titles\" colspan=\"3\" vertical-align=\"center\"><center>TLS Monitor</center></td>" >> ${TEMPFILE}
+echo "              <td class=\"td_titles\" colspan=\"4\" vertical-align=\"center\"><center>TLS Monitor</center></td>" >> ${TEMPFILE}
 echo "			</tr>" >> ${TEMPFILE}
 
 ########################
