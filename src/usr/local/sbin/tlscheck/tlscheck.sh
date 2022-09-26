@@ -182,7 +182,7 @@ for HOST in ${CDNHOSTS} ; do
     HOST_IP=""
     EXPIREDATE=`echo | openssl s_client -servername ${WWWHOST} -connect iolax01.infra.brtn.cloud:443 2>/dev/null | openssl x509 -noout -dates | grep After | awk -F= '{ print $2 }' | awk '{ print $1 "-" $2 "-" $4 "-" $3 }'`
     PROVIDER=`echo | openssl s_client -servername ${WWWHOST} -connect iolax01.infra.brtn.cloud:443 2>/dev/null | openssl x509 -noout -dates -issuer | awk -F= '{ print $4 }' | awk -F, '{ print $1 }' | sed -e's/^ //g'`
-    HOST_IP=`dig +short ${HOST}`
+    HOST_IP="198.71.60.101"
     echo "                      <tr class=\"td\">" >> ${TEMPFILE}
     echo "                          <td class=\"td\">${WWWHOST}</td>" >> ${TEMPFILE}
     echo "                          <td class=\"td\">${EXPIREDATE}</td>" >> ${TEMPFILE}
@@ -212,7 +212,7 @@ for HOST in ${CDNHOSTS} ; do
     HOST_IP=""
     EXPIREDATE=`echo | openssl s_client -servername ${WWWHOST} -connect iolax02.infra.brtn.cloud:443 2>/dev/null | openssl x509 -noout -dates | grep After | awk -F= '{ print $2 }' | awk '{ print $1 "-" $2 "-" $4 "-" $3 }'`
     PROVIDER=`echo | openssl s_client -servername ${WWWHOST} -connect iolax02.infra.brtn.cloud:443 2>/dev/null | openssl x509 -noout -dates -issuer | awk -F= '{ print $4 }' | awk -F, '{ print $1 }' | sed -e's/^ //g'`
-    HOST_IP=`dig +short ${HOST}`
+    HOST_IP="74.208.235.241"
     echo "                      <tr class=\"td\">" >> ${TEMPFILE}
     echo "                          <td class=\"td\">${WWWHOST}</td>" >> ${TEMPFILE}
     echo "                          <td class=\"td\">${EXPIREDATE}</td>" >> ${TEMPFILE}
