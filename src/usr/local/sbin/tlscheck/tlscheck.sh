@@ -19,7 +19,7 @@ TEMPFILE="${PRODFILE}.temp"
 cat /dev/null > ${TEMPFILE}
 
 # Raw Lists
-CDNHOSTS="airpuff.info amateur-ham-rad.io berta.in bertain.net brtn.cloud burl.link hampuff.com haydad.group jtfm.news km6ajq.net lipaamdesogeskhali.us march-madness.bertain.net n538cd.aero reflectionsofcommunity.org sector-2814.net thechailife.store unix-chix.org"
+CDNHOSTS="airpuff.info amateur-ham-rad.io berta.in bertain.net brtn.cloud burl.link hampuff.com haydad.group jtfm.news km6ajq.net lipaamdesogeskhali.us march-madness.bertain.net nbapuff.net n538cd.aero pretty-in-p.ink reflectionsofcommunity.org sector-2814.net split-sp.lat th3b3a7l.es thechailife.store unix-chix.org"
 DNSADMIN="dnsadmin01.brtn.cloud dnsadmin02.brtn.cloud"
 #HAPROXYVIP="haproxy.bertain.net"
 #NETSCALERVIP="pbb07.infra.brtn.cloud"
